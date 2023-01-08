@@ -1,12 +1,10 @@
 package com.example.attornatus.controllers;
 
 import com.example.attornatus.dtos.AddressDto;
-import com.example.attornatus.dtos.PersonDto;
 import com.example.attornatus.model.Address;
 import com.example.attornatus.services.AddressService;
 import com.example.attornatus.util.AddressCreator;
 import com.example.attornatus.util.AddressDtoCreator;
-import com.example.attornatus.util.PersonDtoCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,15 +42,10 @@ class AddressControllerTest {
         BDDMockito.when(addressServiceMock.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.of((AddressCreator.createToBeSavedAddress())));
 
-        BDDMockito.when(addressServiceMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(List.of(AddressCreator.createToBeSavedAddress()));
-
         BDDMockito.when(addressServiceMock.saveOrUpdate(ArgumentMatchers.any(Address.class)))
                 .thenReturn(AddressCreator.createToBeSavedAddress());
 
         BDDMockito.doNothing().when(addressServiceMock).removeById(ArgumentMatchers.any(Address.class));
-
-
     }
 
     @Test
@@ -82,19 +75,6 @@ class AddressControllerTest {
                 .isEqualTo(expectedId);
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-    }
-
-    @Test
-    @DisplayName("FindByName returns list of address when successful")
-    void findByName_ReturnsAddress_WhenSuccessful() {
-        String expectedName = AddressDtoCreator.createToBeSavedAddress().getAddress();
-
-        AddressDto address = AddressDtoCreator.createToBeSavedAddress();
-
-        Assertions.assertThat(address)
-                .isNotNull();
-        Assertions.assertThat(address.getAddress()).isEqualTo(expectedName);
     }
 
     @Test
@@ -109,7 +89,6 @@ class AddressControllerTest {
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
-
     @Test
     @DisplayName("delete address when successful")
     void delete_RemoveAddress_WhenSuccessful() {
@@ -121,7 +100,6 @@ class AddressControllerTest {
         Assertions.assertThat(entity).isNotNull();
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
     }
 
     @Test
@@ -136,6 +114,5 @@ class AddressControllerTest {
         Assertions.assertThat(entity).isNotNull();
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-
     }
 }

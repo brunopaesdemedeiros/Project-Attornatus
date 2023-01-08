@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class AddressDto {
 
-    @NotNull
     private Long id;
 
     @NotBlank

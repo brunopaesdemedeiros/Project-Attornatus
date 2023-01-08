@@ -1,7 +1,6 @@
 package com.example.attornatus.services;
 
 import com.example.attornatus.model.Address;
-import com.example.attornatus.model.Person;
 import com.example.attornatus.repository.AddressRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +24,7 @@ public class AddressService {
 
     @Transactional
     public Address saveOrUpdate(Address address) {
+
         return addressRepository.save(address);
     }
 
@@ -32,19 +32,15 @@ public class AddressService {
 
         return addressRepository.findAll();
     }
-    public List<Address> findByName(String name) {
-
-        return addressRepository.findByName(name);
-    }
 
     public Optional<Address> findById(Long id) {
+
         return addressRepository.findById(id);
     }
 
     @Transactional
     public void removeById(Address address) {
+
         addressRepository.delete(address);
     }
-
-
 }

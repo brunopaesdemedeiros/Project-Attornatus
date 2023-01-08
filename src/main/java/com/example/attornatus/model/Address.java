@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,5 +33,4 @@ public class Address implements Serializable {
 
     @Column(nullable = false)
     private boolean mainAddress;
-
 }

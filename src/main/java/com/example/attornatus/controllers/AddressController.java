@@ -2,8 +2,6 @@ package com.example.attornatus.controllers;
 
 import com.example.attornatus.dtos.AddressDto;
 import com.example.attornatus.model.Address;
-import com.example.attornatus.model.Person;
-import com.example.attornatus.repository.AddressRepository;
 import com.example.attornatus.services.AddressService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import javax.validation.Valid;
 import java.util.List;
@@ -52,15 +49,6 @@ public class AddressController {
         return ResponseEntity.status(HttpStatus.OK).body(addressOptional.get());
     }
 
-    @GetMapping("/{find}")
-    public ResponseEntity<Object> findAddressByName(@RequestParam String name) {
-        List<Address> addresses = addressService.findByName(name);
-        if (!addresses.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Address not found.");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(addressService.findByName(name));
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> removeAddress(@PathVariable(value = "id") Long id) {
         Optional<Address> addressOptional = addressService.findById(id);
@@ -83,5 +71,4 @@ public class AddressController {
         address.setId(addressOptional.get().getId());
         return ResponseEntity.status(HttpStatus.OK).body(addressService.saveOrUpdate(address));
     }
-
 }

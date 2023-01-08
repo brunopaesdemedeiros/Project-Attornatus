@@ -35,14 +35,10 @@ class AddressServiceTest {
         BDDMockito.when(addressRepositoryMock.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.of(AddressCreator.createValidAddress()));
 
-        BDDMockito.when(addressRepositoryMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(List.of(AddressCreator.createValidAddress()));
-
         BDDMockito.when(addressRepositoryMock.save(ArgumentMatchers.any(Address.class)))
                 .thenReturn(AddressCreator.createValidAddress());
 
         BDDMockito.doNothing().when(addressRepositoryMock).delete(ArgumentMatchers.any(Address.class));
-
     }
 
     @Test
@@ -70,19 +66,6 @@ class AddressServiceTest {
     }
 
     @Test
-    @DisplayName("FindByAddress returns list of address when successful")
-    void findByName_ReturnsAddress_WhenSuccessful() {
-        String expectedName = AddressCreator.createValidAddress().getAddress();
-        List<Address> address = addressService.findByName("bruno");
-
-        Assertions.assertThat(address)
-                .isNotNull()
-                .isNotEmpty()
-                .hasSize(1);
-        Assertions.assertThat(address.get(0).getAddress()).isEqualTo(expectedName);
-    }
-
-    @Test
     @DisplayName("save returns address when successful")
     void save_Address_WhenSuccessful(){
         Address addressToBeSaved = AddressCreator.createToBeSavedAddress();
@@ -104,7 +87,6 @@ class AddressServiceTest {
         Optional<Address> addressOptional = addressService.findById(addressSaved.getId());
 
         Assertions.assertThat(addressOptional.isEmpty());
-
     }
 
     @Test
@@ -113,7 +95,5 @@ class AddressServiceTest {
 
         Assertions.assertThatCode(() -> addressService.saveOrUpdate(AddressCreator.createToBeSavedAddress()))
                 .doesNotThrowAnyException();
-
     }
-
 }

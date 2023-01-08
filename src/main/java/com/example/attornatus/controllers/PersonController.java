@@ -80,5 +80,4 @@ public class PersonController {
         person.setId(personOptional.get().getId());
         return ResponseEntity.status(HttpStatus.OK).body(personService.saveOrUpdate(person));
     }
-
 }

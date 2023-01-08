@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class PersonDto {
 
-    @NotNull
     private Long id;
 
     @NotBlank

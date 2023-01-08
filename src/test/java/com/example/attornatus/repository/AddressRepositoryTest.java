@@ -21,6 +21,16 @@ class AddressRepositoryTest {
     private AddressRepository addressRepository;
 
     @Test
+    @DisplayName("Find by id return list of address")
+    void findByIdAddress() {
+        Address addressToBeSaved = createToBeSavedAddress();
+        Address addressSaved = this.addressRepository.save(addressToBeSaved);
+        Optional<Address> AddressOptional = this.addressRepository.findById(addressSaved.getId());
+
+        Assertions.assertThat(AddressOptional.isEmpty());
+    }
+
+    @Test
     @DisplayName("Save persists creates address")
     void saveAddress() {
         Address addressToBesaved = createToBeSavedAddress();
@@ -53,15 +63,5 @@ class AddressRepositoryTest {
         Optional<Address> addressOptional = this.addressRepository.findById(addressSaved.getId());
 
         Assertions.assertThat(addressOptional.isEmpty());
-    }
-
-    @Test
-    @DisplayName("Find by id return list of address")
-    void findByIdAddress() {
-        Address addressToBeSaved = createToBeSavedAddress();
-        Address addressSaved = this.addressRepository.save(addressToBeSaved);
-        Optional<Address> AddressOptional = this.addressRepository.findById(addressSaved.getId());
-
-        Assertions.assertThat(AddressOptional.isEmpty());
     }
 }

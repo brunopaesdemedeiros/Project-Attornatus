@@ -33,5 +33,4 @@ public class Person implements Serializable {
 
     @Column(nullable = false)
     private LocalDate birthDate;
-
 }

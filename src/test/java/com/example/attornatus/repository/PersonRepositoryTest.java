@@ -79,5 +79,4 @@ class PersonRepositoryTest {
         Assertions.assertThat(persons).isNotEmpty();
         Assertions.assertThat(persons).contains(personSaved);
     }
-
 }

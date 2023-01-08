@@ -103,7 +103,6 @@ class PersonServiceTest {
         Optional<Person> personOptional = personService.findById(personSaved.getId());
 
         Assertions.assertThat(personOptional.isEmpty());
-
     }
 
     @Test
@@ -112,7 +111,5 @@ class PersonServiceTest {
 
         Assertions.assertThatCode(() -> personService.saveOrUpdate(PersonCreator.createToBeSavedPerson()))
                 .doesNotThrowAnyException();
-
     }
-
 }

@@ -49,8 +49,6 @@ class PersonControllerTest {
                 .thenReturn(PersonCreator.createValidPerson());
 
         BDDMockito.doNothing().when(personServiceMock).removeById(ArgumentMatchers.any(Person.class));
-
-
     }
 
     @Test
@@ -79,7 +77,6 @@ class PersonControllerTest {
                 .isEqualTo(expectedId);
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-
     }
 
     @Test
@@ -106,7 +103,6 @@ class PersonControllerTest {
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
-
     @Test
     @DisplayName("delete person when successful")
     void delete_RemovePerson_WhenSuccessful() {
@@ -118,7 +114,6 @@ class PersonControllerTest {
         Assertions.assertThat(entity).isNotNull();
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
     }
 
     @Test
@@ -133,6 +128,5 @@ class PersonControllerTest {
         Assertions.assertThat(entity).isNotNull();
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-
     }
 }
