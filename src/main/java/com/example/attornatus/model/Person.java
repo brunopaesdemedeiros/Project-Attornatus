@@ -23,9 +23,7 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "person_id")
-    @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
+    @OneToMany(mappedBy = "person")
     private List<Address> address = new ArrayList<>();
 
     @Column(nullable = false)

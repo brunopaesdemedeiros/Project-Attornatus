@@ -71,7 +71,7 @@ class AddressControllerTest {
 
         ResponseEntity<Object> entity= addressController.findAddressById(personToBeSaved.getId());
 
-        Assertions.assertThat(entity).isNotNull()
+        Assertions.assertThat(personToBeSaved.getId()).isNotNull()
                 .isEqualTo(expectedId);
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);

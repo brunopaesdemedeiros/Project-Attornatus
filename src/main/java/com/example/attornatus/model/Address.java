@@ -15,6 +15,10 @@ import java.io.Serializable;
 @Entity
 public class Address implements Serializable {
 
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

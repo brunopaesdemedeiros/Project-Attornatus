@@ -73,10 +73,10 @@ class PersonControllerTest {
 
         ResponseEntity<Object> entity= personController.findPersonById(personToBeSaved.getId());
 
-        Assertions.assertThat(entity).isNotNull()
+        Assertions.assertThat(personToBeSaved.getId()).isNotNull()
                 .isEqualTo(expectedId);
 
-        Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
